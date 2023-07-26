@@ -23,5 +23,5 @@ RUN ./arduino-cli lib install \
     "Adafruit NeoPixel" \
     "TinyGPSPlus"
 
-COPY Demo ./Demo
+COPY . ./Demo
 RUN ./arduino-cli compile -b esp8266:esp8266:d1_mini Demo \

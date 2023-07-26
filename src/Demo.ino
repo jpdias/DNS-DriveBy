@@ -6,11 +6,13 @@
 
 extern TinyGPSPlus tinyGPS;
 extern SoftwareSerial ss;
-extern SH1106Wire display;
+extern SSD1306Wire display;
 
-void setup() {
-  Serial.begin(115200); printHeader();
-  initScreen(D1,D2,0x3C);
+void setup()
+{
+  Serial.begin(115200);
+  printHeader();
+
   display.init();
   display.flipScreenVertically();
   display.setFont(DejaVu_Sans_Mono_10);
@@ -20,12 +22,17 @@ void setup() {
   // initialize GPS
   ss.begin(GPSBaud);
   bool gpsSuccess = initGPS();
-  if(!gpsSuccess) {Serial.println("[-] RESTARTING"); delay(500); ESP.reset();}
+  if (!gpsSuccess)
+  {
+    Serial.println("[-] RESTARTING");
+    delay(500);
+    ESP.reset();
+  }
   delay(500);
   initWiFi();
-
 }
 
-void loop() {
+void loop()
+{
   dnsDriveby();
 }
